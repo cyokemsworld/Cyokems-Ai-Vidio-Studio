@@ -3,11 +3,23 @@
 // Environment variables required:
 // - REPLICATE_API_TOKEN: your Replicate API token
 // - REPLICATE_MODEL_VERSION: the model version id to use (Replicate version ID)
+// Optional security:
+// - API_KEY: if set, the function will require the request to include header `X-API-KEY` with this value.
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
     return;
+  }
+
+  // Simple API key protection (optional): if API_KEY is set in env, require header
+  const serverApiKey = process.env.API_KEY;
+  if (serverApiKey) {
+    const clientKey = req.headers["x-api-key"];
+    if (!clientKey || clientKey !== serverApiKey) {
+      res.status(401).json({ error: "Unauthorized: missing or invalid API key" });
+      return;
+    }
   }
 
   const { prompt, style, ratio, duration } = req.body || {};

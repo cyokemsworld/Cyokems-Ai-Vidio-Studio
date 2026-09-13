@@ -1,4 +1,7 @@
 // Updated scripts.js — client side integration with /api/generate and /api/status
+// This version will send an X-API-KEY header if a meta tag <meta name="x-api-key" content="..."> is present.
+// Note: Embedding API keys in the client is insecure; for public sites use a server-side authentication flow.
+
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("status");
@@ -7,10 +10,13 @@ const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
 const downloadBtn = document.getElementById("downloadBtn");
 
+const clientApiKey = document.querySelector('meta[name="x-api-key"]')?.content || null;
+
 async function pollStatus(predictionId) {
   // Poll every 3 seconds until succeeded or failed
   while (true) {
-    const res = await fetch(`/api/status?id=${encodeURIComponent(predictionId)}`);
+    const headers = clientApiKey ? { "X-API-KEY": clientApiKey } : {};
+    const res = await fetch(`/api/status?id=${encodeURIComponent(predictionId)}`, { headers });
     if (!res.ok) {
       const errText = await res.text();
       throw new Error(`Status check failed: ${errText}`);
@@ -59,9 +65,12 @@ generateBtn.addEventListener("click", async () => {
   statusBox.textContent = `Preparing your ${style} video (${ratio}, ${duration}s)...`;
 
   try {
+    const headers = { "Content-Type": "application/json" };
+    if (clientApiKey) headers["X-API-KEY"] = clientApiKey;
+
     const resp = await fetch("/api/generate", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({ prompt, style, ratio, duration }),
     });
 

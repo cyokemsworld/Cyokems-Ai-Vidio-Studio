@@ -1,11 +1,22 @@
 // api/status.js
 // Serverless function to return the status of a Replicate prediction
 // Query: /api/status?id=<prediction-id>
+// Optional security: if API_KEY is set in env, the function will require header `X-API-KEY`.
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     res.status(405).json({ error: "Method not allowed" });
     return;
+  }
+
+  // API key check (optional)
+  const serverApiKey = process.env.API_KEY;
+  if (serverApiKey) {
+    const clientKey = req.headers["x-api-key"];
+    if (!clientKey || clientKey !== serverApiKey) {
+      res.status(401).json({ error: "Unauthorized: missing or invalid API key" });
+      return;
+    }
   }
 
   const id = req.query.id;
