@@ -1,3 +1,7 @@
+// Updated scripts.js — client side integration with /api/generate and /api/status
+// This version will send an X-API-KEY header if a meta tag <meta name="x-api-key" content="..."> is present.
+// Note: Embedding API keys in the client is insecure; for public sites use a server-side authentication flow.
+
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("status");
@@ -6,8 +10,44 @@ const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
 const downloadBtn = document.getElementById("downloadBtn");
 
-generateBtn.addEventListener("click", async () => {
+const clientApiKey = document.querySelector('meta[name="x-api-key"]')?.content || null;
 
+async function pollStatus(predictionId) {
+  // Poll every 3 seconds until succeeded or failed
+  while (true) {
+    const headers = clientApiKey ? { "X-API-KEY": clientApiKey } : {};
+    const res = await fetch(`/api/status?id=${encodeURIComponent(predictionId)}`, { headers });
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Status check failed: ${errText}`);
+    }
+    const data = await res.json();
+
+    const status = data.status || (data.state && data.state.phase) || "unknown";
+    statusBox.textContent = `Status: ${status}`;
+
+    if (status === "succeeded" || status === "completed") {
+      // Replicate typically returns data.output which may be an array of URLs
+      const output = data.output || data.result || null;
+      let url = null;
+
+      if (Array.isArray(output) && output.length) url = output[0];
+      else if (typeof output === "string") url = output;
+      else if (output && output[0]) url = output[0];
+
+      return { data, url };
+    }
+
+    if (status === "failed") {
+      throw new Error("Generation failed: " + JSON.stringify(data));
+    }
+
+    // Wait
+    await new Promise((r) => setTimeout(r, 3000));
+  }
+}
+
+generateBtn.addEventListener("click", async () => {
   const prompt = promptBox.value.trim();
 
   if (!prompt) {
@@ -21,28 +61,62 @@ generateBtn.addEventListener("click", async () => {
 
   generateBtn.disabled = true;
   generateBtn.textContent = "⏳ Generating...";
-  
-  statusBox.textContent =
-    `Preparing your ${style} video (${ratio}, ${duration}s)...`;
 
-  /*
-    AI VIDEO API WILL BE CONNECTED HERE.
+  statusBox.textContent = `Preparing your ${style} video (${ratio}, ${duration}s)...`;
 
-    The API request will eventually send:
+  try {
+    const headers = { "Content-Type": "application/json" };
+    if (clientApiKey) headers["X-API-KEY"] = clientApiKey;
 
-    prompt
-    style
-    ratio
-    duration
+    const resp = await fetch("/api/generate", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ prompt, style, ratio, duration }),
+    });
 
-    to the video-generation server.
-  */
+    if (!resp.ok) {
+      const err = await resp.json();
+      statusBox.textContent = `Error: ${err.error || JSON.stringify(err)}`;
+      generateBtn.disabled = false;
+      generateBtn.textContent = "✨ Generate Video";
+      return;
+    }
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
+    const prediction = await resp.json();
 
-  statusBox.textContent =
-    "The video generator interface is ready. Next we connect the real AI video API.";
+    // The prediction object usually contains an `id`.
+    const id = prediction.id || prediction.uuid || prediction.request_id;
+    if (!id) {
+      statusBox.textContent = "No prediction id returned from server.";
+      generateBtn.disabled = false;
+      generateBtn.textContent = "✨ Generate Video";
+      return;
+    }
 
-  generateBtn.disabled = false;
-  generateBtn.textContent = "✨ Generate Video";
+    statusBox.textContent = `Job started (id: ${id}). Polling for status...`;
+
+    const { url } = await pollStatus(id);
+
+    if (!url) {
+      statusBox.textContent = "Generation completed but no video URL was returned.";
+      generateBtn.disabled = false;
+      generateBtn.textContent = "✨ Generate Video";
+      return;
+    }
+
+    // Show video
+    placeholder.style.display = "none";
+    videoPlayer.style.display = "block";
+    videoPlayer.src = url;
+    downloadBtn.style.display = "block";
+    downloadBtn.href = url;
+
+    statusBox.textContent = "Your video is ready!";
+  } catch (err) {
+    console.error(err);
+    statusBox.textContent = `Error: ${err.message}`;
+  } finally {
+    generateBtn.disabled = false;
+    generateBtn.textContent = "✨ Generate Video";
+  }
 });
