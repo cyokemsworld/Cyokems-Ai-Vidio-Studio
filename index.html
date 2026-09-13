@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYOKEMS AI VIDEO STUDIO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo">CYOKEMS <span>AI VIDEO STUDIO</span></div>
+    <button class="login-btn">Login</button>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h1>Create Amazing Videos With AI</h1>
+      <p>Turn your ideas, scripts and images into professional videos.</p>
+    </section>
+
+    <section class="generator">
+
+      <div class="panel">
+
+        <h2>🎬 AI Video Generator</h2>
+
+        <label>Describe your video</label>
+
+        <textarea
+          id="prompt"
+          placeholder="Example: A beautiful African city at sunset, people walking through a modern marketplace, cinematic camera movement..."
+        ></textarea>
+
+        <div class="options">
+
+          <div>
+            <label>Video Style</label>
+            <select id="style">
+              <option>Cinematic</option>
+              <option>Realistic</option>
+              <option>Documentary</option>
+              <option>Animation</option>
+              <option>Business</option>
+              <option>Cartoon</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Aspect Ratio</label>
+            <select id="ratio">
+              <option value="9:16">9:16 - Shorts/Reels</option>
+              <option value="16:9">16:9 - YouTube</option>
+              <option value="1:1">1:1 - Instagram</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Duration</label>
+            <select id="duration">
+              <option value="5">5 seconds</option>
+              <option value="10">10 seconds</option>
+              <option value="15">15 seconds</option>
+              <option value="30">30 seconds</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button id="generateBtn" class="generate-btn">
+          ✨ Generate Video
+        </button>
+
+        <div id="status" class="status"></div>
+
+      </div>
+
+      <div class="preview">
+
+        <h2>📺 Video Preview</h2>
+
+        <div id="videoBox" class="video-box">
+
+          <div id="placeholder">
+            <div class="play-icon">▶</div>
+            <p>Your generated video will appear here.</p>
+          </div>
+
+          <video id="videoPlayer" controls></video>
+
+        </div>
+
+        <a id="downloadBtn" class="download-btn" download>
+          ⬇️ Download Video
+        </a>
+
+      </div>
+
+    </section>
+
+    <section class="features">
+
+      <div>
+        <h3>🎥 Text to Video</h3>
+        <p>Describe your idea and turn it into a video.</p>
+      </div>
+
+      <div>
+        <h3>🖼️ Image to Video</h3>
+        <p>Animate your images with AI.</p>
+      </div>
+
+      <div>
+        <h3>🎙️ AI Voice</h3>
+        <p>Add professional AI narration.</p>
+      </div>
+
+      <div>
+        <h3>💬 Captions</h3>
+        <p>Create subtitles automatically.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 CYOKEMS AI VIDEO STUDIO
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
