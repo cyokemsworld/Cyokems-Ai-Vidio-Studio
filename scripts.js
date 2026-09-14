@@ -46,17 +46,8 @@ generateBtn.addEventListener("click", async () => {
   generateBtn.disabled = false;
   generateBtn.textContent = "✨ Generate Video";
 });
-function login() {
-  const user = prompt("Enter Login ID:");
-  const password = prompt("Enter Password:");
 
-  if (user === "CYOKEMS" && password === "1234") {
-    alert("Login successful!");
-  } else {
-    alert("Invalid Login ID or Password.");
-  }
-}
-function login() {
+  function login() {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
 
@@ -66,11 +57,45 @@ function login() {
     alert("Incorrect Login ID or Password.");
   }
 }
+
+
+
+
+
   
 
-  if (username === "cyokems" && password === "123456") {
-    alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
-  } else {
-    alert("Incorrect Login ID or Password.");
-  }
-}
+
+
+
+  
+
+                          
+
+   
+    
+
+    
+        
+  
+
+
+  
+  
+
+  
+    
+  
+    
+  
+
+  
+
+
+    
+      
+    
+
+
+
+  } e
+    
