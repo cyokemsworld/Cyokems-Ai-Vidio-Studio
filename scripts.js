@@ -6,17 +6,29 @@ const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// LOGIN
 window.login = function () {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
 
-  if (username === "cyokems" && password === "151086") {
+  const cleanUsername = username ? username.trim().toLowerCase() : "";
+  const cleanPassword = password ? password.trim() : "";
+
+  if (cleanUsername === "cyokems" && cleanPassword === "151086") {
     alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
   } else {
     alert("Incorrect Login ID or Password.");
   }
 };
+
+  
+  
+
+
+  
+  
+    
+  
+
 
 // VIDEO GENERATOR
 generateBtn.addEventListener("click", async () => {
