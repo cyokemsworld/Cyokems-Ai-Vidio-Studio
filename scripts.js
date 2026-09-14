@@ -52,8 +52,9 @@ generateBtn.addEventListener("click", async () => {
 
   await new Promise(resolve => setTimeout(resolve, 3000));
 
-  statusBox.textContent =
-    "The video generator interface is ready. Next we connect the real AI video API.";
+  stastatusBox.textContent =
+    "🎬 Your video request has been received. Preparing your AI video...";
+    "
 
   generateBtn.disabled = false;
   generateBtn.textContent = "✨ Generate Video";
