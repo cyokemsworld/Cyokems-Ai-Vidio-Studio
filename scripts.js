@@ -51,7 +51,7 @@ generateBtn.addEventListener("click", async () => {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
 
-  if (username === "cyokems" && password === "1510") {
+  if (username === "cyokems" && password === "151086") {
     alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
   } else {
     alert("Incorrect Login ID or Password.");
@@ -61,7 +61,7 @@ function login() {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
 
-  if (username === "cyokems" && password === "1510") {
+  if (username === "cyokems" && password === "151086") {
     alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
   } else {
     alert("Incorrect Login ID or Password.");
