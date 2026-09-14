@@ -46,3 +46,13 @@ generateBtn.addEventListener("click", async () => {
   generateBtn.disabled = false;
   generateBtn.textContent = "✨ Generate Video";
 });
+function login() {
+  const user = prompt("Enter Login ID:");
+  const password = prompt("Enter Password:");
+
+  if (user === "CYOKEMS" && password === "1234") {
+    alert("Login successful!");
+  } else {
+    alert("Invalid Login ID or Password.");
+  }
+}
