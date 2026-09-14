@@ -61,7 +61,7 @@ function login() {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
 
-  if (username === "cyokems" && password === "123456") {
+  if (username === "cyokems" && password === "151086") {
     alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
   } else {
     alert("Incorrect Login ID or Password.");
