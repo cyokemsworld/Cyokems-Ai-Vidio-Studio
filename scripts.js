@@ -57,7 +57,16 @@ generateBtn.addEventListener("click", async () => {
     alert("Incorrect Login ID or Password.");
   }
 }
+function login() {
+  const username = prompt("Enter Login ID:");
+  const password = prompt("Enter Password:");
 
+  if (username === "cyokems" && password === "123456") {
+    alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
+  } else {
+    alert("Incorrect Login ID or Password.");
+  }
+}
 
 
 
