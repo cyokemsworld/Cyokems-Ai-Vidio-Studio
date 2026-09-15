@@ -35,33 +35,78 @@ generateBtn.addEventListener("click", async () => {
   const prompt = promptBox.value.trim();
 
   if (!prompt) {
-    statusBox.textContent =
-      "Please describe the video you want to create.";
+    alert("Please enter a video prompt.");
     return;
   }
-
-  const style = document.getElementById("style").value;
-  const ratio = document.getElementById("ratio").value;
-  const duration = document.getElementById("duration").value;
 
   generateBtn.disabled = true;
   generateBtn.textContent = "⏳ Generating...";
 
-  statusBox.textContent =
-    `Preparing your ${style} video (${ratio}, ${duration}s)...`;
+  try {
+    const response = await fetch("PASTE_YOUR_API_LINK_HERE", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        prompt: prompt,
+        duration: document.getElementById("duration").value
+      })
+    });
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
+    const data = await response.json();
 
-  statusBox.textContent =
-    "🎬 Video request received! Your AI video is being prepared...";
-    
-generateBtn.textContent = "⏳ Preparing...";
-    
-setTimeout(() => {
-  statusBox.textContent =
-      "✅ Demo complete! Connect an AI video API to generate the actual video.";
+    if (data.videoUrl) {
+      videoPlayer.src = data.videoUrl;
+      videoPlayer.style.display = "block";
+      placeholder.style.display = "none";
+      downloadBtn.style.display = "block";
+      statusBox.textContent = "Video generated successfully!";
+    } else {
+      statusBox.textContent = data.message || "Video generation failed.";
+    }
+
+  } catch (error) {
+    console.error(error);
+    statusBox.textContent = "Unable to connect to the AI video API.";
+  }
+
+  generateBtn.disabled = false;
   generateBtn.textContent = "✨ Generate Video";
-}, 3000);
+});
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+  
+
+  
+  
+
+  
+    `
+
+  
+
+  
+    
+    
+
+    
+
+  
+
+  
+
+
+
+  
     
     
 
