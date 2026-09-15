@@ -43,8 +43,8 @@ generateBtn.addEventListener("click", async () => {
   generateBtn.textContent = "⏳ Generating...";
 
   try {
-    const response = await fetch("PASTE_YOUR_API_LINK_HERE", {
-      method: "POST",
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxMA3oM1eO5rA_o7-2MTvuMsY1VU-cIyadaZGSdYmI7ShJk4iFq9KXBtBVvZo6WgAoP/exec", {
+      method: "POST",u
       headers: {
         "Content-Type": "application/json"
       },
