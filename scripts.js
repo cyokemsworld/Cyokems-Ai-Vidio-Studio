@@ -21,9 +21,8 @@ window.login = function () {
     alert("Incorrect Login ID or Password.");
   }
 };
-
-  
-  
+document.getElementById("loginBtn").addEventListener("click", window.login);
+ 
 
 
   
