@@ -4,7 +4,11 @@ const statusBox = document.getElementById("statusBox");
 
 const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
-const downloadBtn = document.getElementById("downloadBtn");
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.addEventListener("click", function () {
+  alert("LOGIN BUTTON IS WORKING");
+});
 
 window.login = function () {
   alert("LOGIN BUTTON IS WORKING");
