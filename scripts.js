@@ -52,7 +52,7 @@ generateBtn.addEventListener("click", async () => {
 
   try {
     const response = await fetch("https://script.google.com/macros/s/AKfycbxMA3oM1eO5rA_o7-2MTvuMsY1VU-cIyadaZGSdYmI7ShJk4iFq9KXBtBVvZo6WgAoP/exec", {
-      method: "POST",u
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
