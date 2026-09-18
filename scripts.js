@@ -1,4 +1,8 @@
-const generateBtn = document.getElementById("generateBtn");
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.addEventListener("click", function () {
+  alert("CYOKEMS LOGIN IS WORKING!");
+});
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("statusBox");
 
