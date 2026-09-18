@@ -1,6 +1,6 @@
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
-const statusBox = document.getElementById("status");
+const statusBox = document.getElementById("statusBox");
 
 const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
