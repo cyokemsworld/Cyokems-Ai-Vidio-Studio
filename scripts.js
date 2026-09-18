@@ -7,6 +7,8 @@ const placeholder = document.getElementById("placeholder");
 const downloadBtn = document.getElementById("downloadBtn");
 
 window.login = function () {
+  alert("LOGIN BUTTON IS WORKING");
+};
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
 
