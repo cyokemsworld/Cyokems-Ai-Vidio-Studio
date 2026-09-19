@@ -5,7 +5,7 @@ const statusBox = document.getElementById("statusBox");
 const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
 const loginBtn = document.getElementById("loginBtn");
-loginBtn.addEventListener("click", window.login);
+
 window.login = function () {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
