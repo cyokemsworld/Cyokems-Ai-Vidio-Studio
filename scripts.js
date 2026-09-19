@@ -3,6 +3,7 @@ const loginBtn = document.getElementById("loginBtn");
 loginBtn.addEventListener("click", function () {
   alert("CYOKEMS LOGIN IS WORKING!");
 });
+const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("statusBox");
 
@@ -10,12 +11,18 @@ const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
 const loginBtn = document.getElementById("loginBtn");
 
-loginBtn.addEventListener("click", function () {
-  alert("LOGIN BUTTON IS WORKING");
-});
-
 window.login = function () {
-  alert("LOGIN BUTTON IS WORKING");
+  const username = prompt("Enter Login ID:");
+  const password = prompt("Enter Password:");
+
+  const cleanUsername = username ? username.trim().toLowerCase() : "";
+  const cleanPassword = password ? password.trim() : "";
+
+  if (cleanUsername === "cyokems" && cleanPassword === "151086") {
+    alert("Login successful! Welcome to CYOKEMS AI VIDEO STUDIO.");
+  } else {
+    alert("Incorrect Login ID or Password.");
+  }
 };
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
