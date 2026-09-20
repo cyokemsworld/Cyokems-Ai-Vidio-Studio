@@ -1,12 +1,15 @@
 alert("SCRIPTS.JS IS LOADING");
+
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("statusBox");
 
 const videoPlayer = document.getElementById("videoPlayer");
 const placeholder = document.getElementById("placeholder");
+const downloadBtn = document.getElementById("downloadBtn");
 const loginBtn = document.getElementById("loginBtn");
 
+// LOGIN
 window.login = function () {
   const username = prompt("Enter Login ID:");
   const password = prompt("Enter Password:");
@@ -36,16 +39,19 @@ generateBtn.addEventListener("click", async () => {
   generateBtn.textContent = "⏳ Generating...";
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxMA3oM1eO5rA_o7-2MTvuMsY1VU-cIyadaZGSdYmI7ShJk4iFq9KXBtBVvZo6WgAoP/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-        duration: document.getElementById("duration").value
-      })
-    });
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbxMA3oM1eO5rA_o7-2MTvuMsY1VU-cIyadaZGSdYmI7ShJk4iFq9KXBtBVvZo6WgAoP/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          duration: document.getElementById("duration").value
+        })
+      }
+    );
 
     const data = await response.json();
 
@@ -56,118 +62,16 @@ generateBtn.addEventListener("click", async () => {
       downloadBtn.style.display = "block";
       statusBox.textContent = "Video generated successfully!";
     } else {
-      statusBox.textContent = data.message || "Video generation failed.";
+      statusBox.textContent =
+        data.message || "Video generation failed.";
     }
 
   } catch (error) {
     console.error(error);
-    statusBox.textContent = "Unable to connect to the AI video API.";
+    statusBox.textContent =
+      "Unable to connect to the AI video API.";
   }
 
   generateBtn.disabled = false;
   generateBtn.textContent = "✨ Generate Video";
 });
-  
-
-  
-    
-      
-    
-  
-
-  
-  
-  
-
-  
-  
-
-  
-    
-
-  
-
-  
-    
-    
-
-    
-
-  
-
-  
-
-
-
-  
-    
-    
-
-  generateBtn.disabled = false;
-  generateBtn.textContent = "✨ Generate Video";
-});
-  
-  
-  
-
-  
-    
-
-
-
-
-  
-    
-  
-
-
-  
-  
-
-  
-    
-  
-    
-  
-
-
-
-
-
-  
-
-
-
-
-  
-
-                          
-
-   
-    
-
-    
-        
-  
-
-
-  
-  
-
-  
-    
-  
-    
-  
-
-  
-
-
-    
-      
-    
-
-
-
-  
-    
