@@ -1,4 +1,4 @@
-alert("SCRIPTS.JS IS LOADING");
+
 
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
@@ -11,7 +11,7 @@ const loginBtn = document.getElementById("loginBtn");
 
 
  
-});
+
 // LOGIN
 window.login = function () {
   const username = prompt("Enter Login ID:");
