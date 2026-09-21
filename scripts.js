@@ -56,7 +56,7 @@ generateBtn.addEventListener("click", async () => {
       }
     );
 
-    const data = await response.json();
+    const data = await response.text();
 
     if (data.videoUrl) {
       videoPlayer.src = data.videoUrl;
