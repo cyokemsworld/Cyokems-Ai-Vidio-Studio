@@ -71,8 +71,8 @@ alert(JSON.stringify(data));
 
   } catch (error) {
     console.error(error);
-    statusBox.textContent =
-      "Unable to connect to the AI video API.";
+    statusBox.textContent = "ERROR: " + error.message;
+      
   }
 
   generateBtn.disabled = false;
