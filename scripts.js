@@ -57,7 +57,7 @@ generateBtn.addEventListener("click", async () => {
     );
 
     const data = await response.json();
-alert(JSON.stringify(data));
+
     if (data.videoUrl) {
       videoPlayer.src = data.videoUrl;
       videoPlayer.style.display = "block";
@@ -71,7 +71,7 @@ alert(JSON.stringify(data));
 
   } catch (error) {
     console.error(error);
-    statusBox.textContent = "ERROR: " + error.message;
+    statusBox.textContent = "Unable to connect to the AI video API.";
       
   }
 
