@@ -56,8 +56,8 @@ generateBtn.addEventListener("click", async () => {
       }
     );
 
-    const data = await response.text();
-alert(data);
+    const data = await response.json();
+
     if (data.videoUrl) {
       videoPlayer.src = data.videoUrl;
       videoPlayer.style.display = "block";
