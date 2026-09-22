@@ -1,5 +1,3 @@
-
-
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("status");
@@ -76,3 +74,5 @@ generateBtn.addEventListener("click", async () => {
   generateBtn.disabled = false;
   generateBtn.textContent = "✨ Generate Video";
 });
+
+
