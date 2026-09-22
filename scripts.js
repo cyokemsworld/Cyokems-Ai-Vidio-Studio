@@ -27,8 +27,6 @@ window.login = function () {
   }
 };
 
-loginBtn.addEventListener("click", window.login);
-
 // VIDEO GENERATOR
 generateBtn.addEventListener("click", async () => {
   const prompt = promptBox.value.trim();
