@@ -1,4 +1,5 @@
 alert("SCRIPTS.JS IS LOADING");
+
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
 const statusBox = document.getElementById("status");
