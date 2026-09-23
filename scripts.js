@@ -1,4 +1,4 @@
-alert("SCRIPTS.JS IS LOADING");
+alertalert("CYOKEMS SCRIPT IS WORKING");
 
 const generateBtn = document.getElementById("generateBtn");
 const promptBox = document.getElementById("prompt");
